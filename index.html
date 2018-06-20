@@ -69,7 +69,115 @@ w/Elimination</li>
     <script  src="js/index.js"></script>
 
 
+<style>body{
+	background-color:black;
+	padding:20px;
+}
 
+*{
+	user-select: none; 
+}
+
+.accordion{
+	background-color:#F2F2F2;
+	border-left: 10px #B8E8E5 solid;
+	margin:auto;
+	width:50%;
+	overflow:auto;
+	padding-left:20px;
+	padding-bottom:10px;
+	transition:0.3s ease;
+}
+
+.accordion:hover{
+	background-color:lightgray;
+	transition:0.3s ease;
+}
+
+.below{
+	display: none;
+	transition:0.5s ease;
+}
+
+.header{
+	margin:auto;
+	text-align:center;
+	color:white;
+	font-family: 'Cinzel', serif;
+}
+
+
+.progressbar-container {
+  position: relative;
+  width: 350px; 
+}
+
+.progressbar-bar { 
+  height: 25px;
+margin: 10px 0;
+border-radius: 0px;
+}
+
+.progressbar-label {
+  position: absolute;
+  top: 2px;
+  left: 45%;
+  z-index: 2;
+}
+
+.ui-progressbar-value { 
+	background: lightblue
+}
+
+.under{
+	display:none;
+}
+
+.clicknotHere{
+		font-family: 'Cinzel', serif;
+}
+	</style>
+	<script>
+		  function toggleButton() { 
+	$('.below').toggle();
+		return false;
+	}
+
+  function toggleEnd() { 
+	$('.under').toggle();
+		return false;
+	}
+
+$(document).ready(function() {
+  
+  // get box count
+  var count = 0;
+  var checked = 0;
+  function countBoxes() { 
+    count = $("input[type='checkbox']").length;
+    console.log(count);
+  }
+  
+  countBoxes();
+  $(":checkbox").click(countBoxes);
+  
+  // count checks
+  
+  function countChecked() {
+    checked = $("input:checked").length;
+    
+    var percentage = parseInt(((checked / count) * 100),10);
+    $(".progressbar-bar").progressbar({
+            value: percentage
+        });
+    $(".progressbar-label").text(percentage + "%");
+  }
+  
+  countChecked();
+  $(":checkbox").click(countChecked);
+});
+		</script>
+		
 
 </body>
 
